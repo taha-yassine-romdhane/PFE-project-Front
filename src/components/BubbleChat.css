@@ -1,0 +1,20 @@
+.bubble {
+    max-width: 70%;
+    margin: 10px;
+    padding: 10px 15px;
+    border-radius: 20px;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .user-bubble {
+    background-color: #4caf50;
+    color: white;
+    align-self: flex-end;
+  }
+  
+  .chat-bubble {
+    background-color: #f3f3f3;
+    align-self: flex-start;
+    color: #333;
+  }
+  
