@@ -14,14 +14,14 @@ L'objectif est de simplifier la gestion des documents en automatisant la classif
         <div className="mb-8">
           <Link
             to="/signup"
-            className="inline-block bg-blue-500 text-white py-2 px-6 rounded-md hover:bg-blue-600"
+            className="inline-block bg-gray-600 text-white py-2 px-6 rounded-md hover:bg-gray-800"
           >
             Get Started <ArrowRight className="h-5 w-5 ml-2" />
           </Link>
         </div>
-        <p className="text-sm text-gray-800">
+        <p className="text-sm text-gray-500">
           Already have an account?{' '}
-          <Link to="/login" className="text-blue-600 hover:underline">
+          <Link to="/Client/login" className="text-black hover:underline">
             Log in here
           </Link>
         </p>

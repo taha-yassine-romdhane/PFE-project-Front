@@ -33,7 +33,7 @@ export default function AdminLogin() {
     // Fetch CSRF token
     await axiosClient.get('/sanctum/csrf-cookie');
     try {
-      const { data } = await axiosClient.post(LOGIN_ROUTE, values);
+      const { data } = await axiosClient.post('/api/login', values);
       // Save credentials securely
       localStorage.setItem('token', data.token);
       // Set the Authorization header for Axios
@@ -47,7 +47,10 @@ export default function AdminLogin() {
   
   return (
     <Form {...formMethods}>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">Admin Login 
+      <div  className="flex justify-center mt-10 text-4xl  " > Admin Login Page </div>
+       <div className="flex justify-center mt-10  " >
+        
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-8 max-w-md w-full">
         <FormField 
           control={control}
           name="email" 
@@ -78,6 +81,7 @@ export default function AdminLogin() {
           {isSubmitting && <Loader className={'mx-2 my-2 animate-spin'}/>} {' '} Login
         </Button>
       </form>
+      </div>
     </Form>
   );
 }

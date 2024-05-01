@@ -3,6 +3,7 @@ import Logo from "../components/Logo.jsx";
 import { User, UserCog, UserCheck } from "lucide-react";
 import { LOGIN_ROUTE, SIGNUP_ROUTE, LOGIN_ADMIN_ROUTE, HOME_ROUTE, HOME_ADMIN_ROUTE } from "../router/index.jsx";
 import { useEffect } from "react";
+import Footer from "./Footer.jsx";
 
 export default function GuestLayout() {
   const navigate = useNavigate();
@@ -25,7 +26,8 @@ export default function GuestLayout() {
       <header>
         <div className="items-center justify-between flex bg-gray-800 bg-opacity-90 px-12 py-4 mb-4 mx-auto shadow-2xl">
           <div className="text-2xl text-white font-semibold inline-flex items-center">
-            <Logo /> File-Extractor
+            <Logo /> 
+            <div className=" px-2 " >File-Extractor</div>
           </div>
           <div>
             <ul className="flex text-white">
@@ -53,6 +55,7 @@ export default function GuestLayout() {
           <Outlet />
         </div>
       </main>
+      <Footer/>
     </>
   );
 }

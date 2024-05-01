@@ -17,7 +17,14 @@ import Settings from "../pages/SettingsPage.jsx";
 import AdminSettings from "../pages/AdminSettingsPage.jsx";  
 import ProfilePage from "../pages/ProfilePage.jsx";
 import ModuleIAManagement from "../pages/ModuleIAManagement.jsx";
-export const LOGIN_ROUTE = '/login';
+import AdminProfilePage from "../pages/AdminProfilePage.jsx";
+import ClientManagement from "../pages/ClientManagementFolder/ClientManagement.jsx";
+import DocumentsPage from "../pages/Client_document/homePageClient/DocumentsPage.jsx";
+import Archives from "../pages/Archives.jsx";
+import Module_Folders from "../pages/Admin_pages/Module_Folders.jsx";
+import FolderManagementPage from "../pages/Client_document/FolderManagementClient/FolderManagement.jsx";
+export const CLIENTS_MANAGEMNET_ROUTE = '/Admin/ClientManagement';
+export const LOGIN_ROUTE = '/Client/login';
 export const LOGIN_ADMIN_ROUTE = '/Admin/Login';
 export const SIGNUP_ROUTE = '/signup';
 export const WELCOMEPAGE_ROUTE = '/';
@@ -29,10 +36,11 @@ export const SETTINGS_ROUTE = '/Settings';
 export const ADMIN_SETTINGS_ROUTE = '/AdminSettings';
 export const HOME_ROUTE = '/Client/dashboard';
 export const HOME_ADMIN_ROUTE = '/Admin/dashboard'
-export const PROFILE_ROUTE = '/ProfilePage'
-export const MANAGEMENT_ROUTE='/ModuleIAManagement'
-export const ADMIN_NOTIFICATIONS_ROUTE='AdminNotifications'
-//ProfilePage
+export const PROFILE_ROUTE = '/ProfilePage';
+export const MANAGEMENT_ROUTE='/ModuleIAManagement';
+export const ADMIN_NOTIFICATIONS_ROUTE='/AdminNotifications';
+export const ADMIN_PROFILE_ROUTE='/AdminProfilePage';
+
 
 const router = createBrowserRouter([
 
@@ -74,7 +82,19 @@ const router = createBrowserRouter([
           {
             path: HOME_ROUTE,
             element: <ClientDashboard/>
-          }, 
+          },
+          {
+            path: '/FolderManagement',
+            element: <FolderManagementPage/>
+          },
+          {
+            path: '/documents',
+            element: <DocumentsPage/>
+          },
+          {
+            path: '/Archives',
+            element: <Archives/>
+          },   
           {
             path: PROFILE_ROUTE,
             element: <ProfilePage/>
@@ -106,8 +126,17 @@ const router = createBrowserRouter([
             
           }, 
           {
-            path: PROFILE_ROUTE,
-            element: <ProfilePage/>
+            path: '/Module_Folders',
+            element: <Module_Folders/>
+            
+          }, 
+          {
+            path: ADMIN_PROFILE_ROUTE,
+            element: <AdminProfilePage/>
+          },
+          {
+            path: CLIENTS_MANAGEMNET_ROUTE,
+            element: <ClientManagement/>
           },
           {
             path:MANAGEMENT_ROUTE,

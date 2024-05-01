@@ -1,9 +1,9 @@
 import { cn } from "@/lib/utils";
 import { Button } from "../components/ui/button.jsx";
-import { Folder } from 'lucide-react';
+import { FolderOpen } from 'lucide-react';
 import { Settings  } from 'lucide-react';
 import { Bell } from 'lucide-react';
-import { BarChart } from 'lucide-react';
+import { FileBox  } from 'lucide-react';
 import { HelpCircle } from 'lucide-react';
 import { Info } from 'lucide-react';
 import { MessageCircle } from 'lucide-react';
@@ -26,9 +26,7 @@ export function SideBar({ className }) {
             <Button variant="ghost" className="w-full justify-start" onClick={() => navigate(HOME_ROUTE)}>
               <Home className="mr-2 h-4 w-4" /> Home
             </Button>
-            <Button variant="ghost" className="w-full justify-start" onClick={() => navigate('/FileManagement')}>
-              <Folder className="mr-2 h-4 w-4" /> File Management
-            </Button>
+          
             <Button variant="ghost" className="w-full justify-start" onClick={() => navigate('/Billing')}>
               <Euro  className="mr-2 h-4 w-4" />  Billing
             </Button>

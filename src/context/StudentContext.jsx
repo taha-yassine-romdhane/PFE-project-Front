@@ -1,7 +1,7 @@
 import {createContext, useContext, useState} from "react";
-import StudentApi from "../services/Api/ClientApi.js";
+import ClienttApi from "../services/Api/ClientApi.js";
 
-export const StudentStateContext = createContext({
+export const ClientStateContext = createContext({
   user: {},
   authenticated: false,
   setUser: () => {
@@ -15,12 +15,12 @@ export const StudentStateContext = createContext({
   setToken: () => {
   },
 })
-export default function StudentContext({children}) {
+export default function ClientContext({children}) {
   const [user, setUser] = useState({})
   const [authenticated, _setAuthenticated] = useState('true' === window.localStorage.getItem('AUTHENTICATED'))
 
   const login = async (email, password) => {
-    return StudentApi.login(email, password)
+    return ClienttApi.login(email, password)
   }
   const logout = () => {
     setUser({})
@@ -37,7 +37,7 @@ export default function StudentContext({children}) {
   }
 
   return <>
-    <StudentStateContext.Provider value={{
+    <ClientStateContext.Provider value={{
       user,
       login,
       logout,
@@ -47,7 +47,7 @@ export default function StudentContext({children}) {
       setToken
     }}>
       {children}
-    </StudentStateContext.Provider>
+    </ClientStateContext.Provider>
   </>
 }
-export const useUserContext = () => useContext(StudentStateContext)
+export const useUserContext = () => useContext(ClientStateContext)

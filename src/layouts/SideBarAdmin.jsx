@@ -4,11 +4,11 @@ import { Folder } from 'lucide-react';
 import { Settings  } from 'lucide-react';
 import { Bell } from 'lucide-react';
 import { BarChart } from 'lucide-react';
-
+import { Users } from "lucide-react";
 import { Home } from 'lucide-react';
 
 import { useNavigate } from "react-router-dom";
-import { HOME_ADMIN_ROUTE,MANAGEMENT_ROUTE,ADMIN_NOTIFICATIONS_ROUTE,ANALYTICS_ROUTE,ADMIN_SETTINGS_ROUTE } from "../router/index.jsx";
+import { HOME_ADMIN_ROUTE,MANAGEMENT_ROUTE,ADMIN_NOTIFICATIONS_ROUTE,ANALYTICS_ROUTE,ADMIN_SETTINGS_ROUTE,CLIENTS_MANAGEMNET_ROUTE } from "../router/index.jsx";
 
 
 export function SideBarAdmin({ className }) {
@@ -25,12 +25,13 @@ export function SideBarAdmin({ className }) {
             <Button variant="ghost" className="w-full justify-start" onClick={() => navigate(HOME_ADMIN_ROUTE)}>
               <Home className="mr-2 h-4 w-4" /> Home
             </Button>
-            <Button variant="ghost" className="w-full justify-start" onClick={() => navigate(MANAGEMENT_ROUTE)}>
-              <Folder className="mr-2 h-4 w-4" /> Module AI Management
+            <Button variant="ghost" className="w-full justify-start" onClick={() => navigate('/Module_Folders')}>
+              <Folder className="mr-2 h-4 w-4" /> Module Folders
             </Button>
-            <Button variant="ghost" className="w-full justify-start" onClick={() => navigate(ADMIN_NOTIFICATIONS_ROUTE)}>
-              <Bell className="mr-2 h-4 w-4" /> Notifications
+            <Button variant="ghost" className="w-full justify-start" onClick={() => navigate(CLIENTS_MANAGEMNET_ROUTE)}>
+              <Users  className="mr-2 h-4 w-4" /> Clients Management
             </Button>
+           
             <Button variant="ghost" className="w-full justify-start" onClick={() => navigate(ANALYTICS_ROUTE)}>
               <BarChart className="mr-2 h-4 w-4" /> Analytics
             </Button>
@@ -44,7 +45,9 @@ export function SideBarAdmin({ className }) {
             Need Help ? 
           </h2>
           <div className="space-y-1">
-       
+          <Button variant="ghost" className="w-full justify-start" onClick={() => navigate(ADMIN_SETTINGS_ROUTE)}>
+              <Settings  className="mr-2 h-4 w-4" /> Support
+            </Button>
           </div>
         </div>
       </div>
