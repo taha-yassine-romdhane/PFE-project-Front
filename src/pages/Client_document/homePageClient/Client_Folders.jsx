@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { FaFileAlt, FaFolder } from "react-icons/fa"; // Import icons for files and folders
+import { FaFileAlt, FaFolder } from "react-icons/fa";
 import axiosClient from "../../../api/axios";
-import ModuleIAManagement from "../../ModuleIAManagement";
+import ModuleIAManagement from "../ModuleIAManagement";
 import { FadeLoader } from "react-spinners";
 import { IoMdClose } from "react-icons/io";
+import { MdOutlineDocumentScanner } from "react-icons/md";
 
 const Client_Folders = () => {
   const [folders, setFolders] = useState([]);
@@ -13,12 +13,12 @@ const Client_Folders = () => {
   const [loading, setLoading] = useState(true);
   const [folderFiles, setFolderFiles] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [filesPerPage] = useState(10); // Set the number of files per page
+  const [filesPerPage] = useState(10);
+  const [images, setImages] = useState([]);
 
   const handleFolderClick = async (folder) => {
     try {
       const response = await axiosClient.get(`/api/folders/${folder.id}/files`);
-      const responsee = await axiosClient.get(`/api/folders/${folder.id}/files`);
       setFolderFiles(response.data.files);
       setSelectedFile(null);
       setSelectedFolder(folder);
@@ -26,14 +26,28 @@ const Client_Folders = () => {
       console.error("Error fetching folder files:", error);
     }
   };
-  
 
-  const handleFileClick = (file) => {
-    setSelectedFile(file);
+  const handleFileClick = async (file) => {
+    try {
+      const response = await axiosClient.get(`/api/pdf_files/${file.id}/path`);
+      const headers = {
+        'Access-Control-Allow-Origin': import.meta.env.VITE_FRONTEND_URL,
+        'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+      };
+      setSelectedFile({ ...file, filePath: response.data.filePath, headers });
+
+      // Fetch images for the selected file
+      const imagesResponse = await axiosClient.get(`/api/images/${file.id}`);
+      setImages(imagesResponse.data);
+    } catch (error) {
+      console.error("Error fetching file path or images:", error);
+    }
   };
 
   const handleCancelClick = () => {
     setSelectedFile(null);
+    setImages([]);
   };
 
   useEffect(() => {
@@ -51,12 +65,10 @@ const Client_Folders = () => {
     fetchData();
   }, []);
 
-  // Get current files
   const indexOfLastFile = currentPage * filesPerPage;
   const indexOfFirstFile = indexOfLastFile - filesPerPage;
   const currentFiles = folderFiles.slice(indexOfFirstFile, indexOfLastFile);
 
-  // Change page
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   if (loading) {
@@ -122,7 +134,7 @@ const Client_Folders = () => {
 
       <div className="bg-white p-8">
         <form>
-          {selectedFile && (
+          {selectedFile && selectedFile.filePath && (
             <>
               <div className="bg-white p-8 flex justify-end">
                 <IoMdClose
@@ -130,7 +142,11 @@ const Client_Folders = () => {
                   onClick={handleCancelClick}
                 />
               </div>
-              <ModuleIAManagement selectedFile={selectedFile} />
+              <button className="p-2 bg-gray-800 text-white rounded shadow-md mr-2 hover:bg-gray-900 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 flex items-center m-2">
+                <MdOutlineDocumentScanner className="mr-2" />
+                <span>IA Vrifications</span>
+              </button>
+              <ModuleIAManagement filePath={selectedFile.filePath} headers={selectedFile.headers} images={images} />
             </>
           )}
         </form>

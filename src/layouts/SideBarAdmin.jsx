@@ -26,7 +26,7 @@ export function SideBarAdmin({ className }) {
               <Home className="mr-2 h-4 w-4" /> Home
             </Button>
             <Button variant="ghost" className="w-full justify-start" onClick={() => navigate('/Module_Folders')}>
-              <Folder className="mr-2 h-4 w-4" /> Module Folders
+              <Folder className="mr-2 h-4 w-4" /> Folders Management
             </Button>
             <Button variant="ghost" className="w-full justify-start" onClick={() => navigate(CLIENTS_MANAGEMNET_ROUTE)}>
               <Users  className="mr-2 h-4 w-4" /> Clients Management

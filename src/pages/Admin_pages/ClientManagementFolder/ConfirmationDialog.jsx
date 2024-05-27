@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "@/components/ui/button";
 
 const ConfirmationDialog = ({ message, onConfirm, onCancel }) => {
   return (
@@ -6,8 +7,8 @@ const ConfirmationDialog = ({ message, onConfirm, onCancel }) => {
       <div style={modalContentStyle}>
         <p>{message}</p>
         <div style={modalButtonContainerStyle}>
-          <button style={modalButtonStyle} onClick={onConfirm}>Yes</button>
-          <button style={modalButtonStyle} onClick={onCancel}>No</button>
+          <Button className={"m-2"} onClick={onConfirm}>Yes</Button>
+          <Button  onClick={onCancel}>No</Button>
         </div>
       </div>
     </div>
@@ -26,17 +27,7 @@ const modalButtonContainerStyle = {
   marginTop: "20px",
 };
 
-const modalButtonStyle = {
-  padding: "8px 16px",
-  marginRight: "10px",
-  backgroundColor: "#8b8b8b",
-  color: "white",
-  border: "none",
-  borderRadius: "4px",
-  cursor: "pointer",
-  fontWeight: "bold",
-  fontSize: "14px",
-};
+
 
 const modalOverlayStyle = {
   position: "fixed",

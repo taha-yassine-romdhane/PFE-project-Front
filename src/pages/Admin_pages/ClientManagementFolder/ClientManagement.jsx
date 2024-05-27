@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import axiosClient from "../../api/axios";
+import axiosClient from "../../../api/axios";
 import ConfirmationDialog from "./ConfirmationDialog";
 import AddUserModal from "./AddUserModal";
 import { User } from "react-feather";
 
 import { RiEditBoxLine } from "react-icons/ri";
 import { FaRegTrashAlt } from "react-icons/fa";
-
+import { Button } from "@/components/ui/button";
 const ClientManagement = () => {
   const [users, setUsers] = useState([]);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -51,7 +51,7 @@ const ClientManagement = () => {
 
       // Close modal
       setShowEditModal(false);
-      console.log(userToEdit)
+      console.log(userToEdit);
     } catch (error) {
       console.error("Error updating user:", error);
     }
@@ -88,13 +88,11 @@ const ClientManagement = () => {
 
   const handleAddUser = () => {
     setShowAddUserModal(true);
-   
   };
 
   const handleCloseAddUserModal = () => {
     setShowAddUserModal(false);
   };
-
 
   return (
     <div style={{ margin: "auto", maxWidth: "800px" }}>
@@ -104,12 +102,15 @@ const ClientManagement = () => {
         Users Management Table
       </h1>
       <div>
-        <button style={addButtonStyle} onClick={handleAddUser}>
+        <Button
+          className="p-2 bg-gray-800   mr-2 hover:bg-gray-700 m-2  focus:ring-2 focus:ring-red-500 focus:ring-opacity-50"
+          onClick={handleAddUser}
+        >
           <div style={{ display: "flex", alignItems: "center" }}>
             <User />
             <div style={{ marginLeft: "8px" }}>Add User</div>
           </div>
-        </button>
+        </Button>
 
         <AddUserModal
           isOpen={showAddUserModal}
@@ -122,6 +123,9 @@ const ClientManagement = () => {
           width: "100%",
           borderCollapse: "collapse",
           marginBottom: "20px",
+          border: "1px solid #e0e0e0",
+          borderRadius: "8px",
+          overflow: "hidden",
         }}
       >
         <thead>
@@ -142,17 +146,23 @@ const ClientManagement = () => {
               <td style={tableCellStyle}>{user.email}</td>
               <td style={tableCellStyle}>{user.role}</td>
               <td style={tableCellStyle}>{user.telephone}</td>
-              <td style={{ textAlign: 'center' }}>
-  {/* Edit button with RiEditBoxLine icon */}
-  <button onClick={() => handleEditClick(user)} style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
-    <RiEditBoxLine />
-  </button>
+              <td style={{ textAlign: "center" }}>
+                {/* Edit button with RiEditBoxLine icon */}
+                <button
+                  onClick={() => handleEditClick(user)}
+                  className="p-2 bg-gray-500 text-white rounded-full shadow-md hover:bg-blue-700 focus:ring-2 mr-1 focus:ring-blue-500 focus:ring-opacity-50"
+                >
+                  <RiEditBoxLine />
+                </button>
 
-  {/* Delete button with FaRegTrashAlt icon */}
-  <button onClick={() => handleDeleteClick(user)} style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
-    <FaRegTrashAlt />
-  </button>
-</td>
+                {/* Delete button with FaRegTrashAlt icon */}
+                <button
+                  onClick={() => handleDeleteClick(user)}
+                  className="p-2 bg-gray-800 text-white rounded-full shadow-md mr-2 hover:bg-red-700  focus:ring-2 ml-1 focus:ring-red-500 focus:ring-opacity-50"
+                >
+                  <FaRegTrashAlt />
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
@@ -165,70 +175,66 @@ const ClientManagement = () => {
         />
       )}
 
-
-{/* Edit Modal */}
-{showEditModal && (
-  <div style={modalOverlayStyle}>
-    <div style={modalContentStyle}>
-      <p>Edit User</p>
-      <form onSubmit={handleEditConfirm}>
-        <label style={modalLabelStyle}>
-          Email:
-          <input
-            style={modalInputStyle}
-            type="text"
-            value={userToEdit.email}
-            onChange={(e) =>
-              setUserToEdit({ ...userToEdit, email: e.target.value })
-            }
-          />
-        </label>
-        <label style={modalLabelStyle}>
-          Name:
-          <input
-            style={modalInputStyle}
-            type="text"
-            value={userToEdit.name}
-            onChange={(e) =>
-              setUserToEdit({ ...userToEdit, name: e.target.value })
-            }
-          />
-        </label>
-        <label style={modalLabelStyle}>
-          Role:
-          <input
-            style={modalInputStyle}
-            type="text"
-            value={userToEdit.role}
-            onChange={(e) =>
-              setUserToEdit({ ...userToEdit, role: e.target.value })
-            }
-          />
-        </label>
-        <label style={modalLabelStyle}>
-          Phone:
-          <input
-            style={modalInputStyle}
-            type="text"
-            value={userToEdit.telephone}
-            onChange={(e) =>
-              setUserToEdit({ ...userToEdit, telephone: e.target.value })
-            }
-          />
-        </label>
-        <div style={modalButtonContainerStyle}>
-          <button style={modalButtonStyle} type="submit">
-            Save
-          </button>
-          <button style={modalButtonStyle} onClick={handleEditCancel}>
-            Cancel
-          </button>
+      {/* Edit Modal */}
+      {showEditModal && (
+        <div style={modalOverlayStyle}>
+          <div style={modalContentStyle}>
+            <p>Edit User</p>
+            <form onSubmit={handleEditConfirm}>
+              <label style={modalLabelStyle}>
+                Email:
+                <input
+                  style={modalInputStyle}
+                  type="text"
+                  value={userToEdit.email}
+                  onChange={(e) =>
+                    setUserToEdit({ ...userToEdit, email: e.target.value })
+                  }
+                />
+              </label>
+              <label style={modalLabelStyle}>
+                Name:
+                <input
+                  style={modalInputStyle}
+                  type="text"
+                  value={userToEdit.name}
+                  onChange={(e) =>
+                    setUserToEdit({ ...userToEdit, name: e.target.value })
+                  }
+                />
+              </label>
+              <label style={modalLabelStyle}>
+                Role:
+                <input
+                  style={modalInputStyle}
+                  type="text"
+                  value={userToEdit.role}
+                  onChange={(e) =>
+                    setUserToEdit({ ...userToEdit, role: e.target.value })
+                  }
+                />
+              </label>
+              <label style={modalLabelStyle}>
+                Phone:
+                <input
+                  style={modalInputStyle}
+                  type="text"
+                  value={userToEdit.telephone}
+                  onChange={(e) =>
+                    setUserToEdit({ ...userToEdit, telephone: e.target.value })
+                  }
+                />
+              </label>
+              <div style={{ marginTop: "20px" }}>
+                <Button type="submit" style={{ marginRight: "10px" }}>
+                  Save
+                </Button>
+                <Button onClick={handleEditCancel}>Cancel</Button>
+              </div>
+            </form>
+          </div>
         </div>
-      </form>
-    </div>
-  </div>
-)}
-
+      )}
     </div>
   );
 };
@@ -260,9 +266,10 @@ const modalButtonContainerStyle = {
 };
 
 const tableHeaderStyle = {
-  padding: "10px",
-  borderBottom: "1px solid #ddd",
-  backgroundColor: "#f2f2f2",
+  padding: "12px 16px", // Increase padding for better spacing
+  borderBottom: "1px solid #e0e0e0", // Change border color to a lighter shade
+  backgroundColor: "#f5f5f5", // Use a slightly lighter background color
+  color: "#333", // Set text color to a darker shade for better contrast
   fontWeight: "bold",
   textTransform: "uppercase",
   borderRadius: "4px",
@@ -273,30 +280,8 @@ const tableRowStyle = {
 };
 
 const tableCellStyle = {
-  padding: "1px",
-};
-
-const editButtonStyle = {
-  marginRight: "5px",
-  padding: "8px 16px",
-  backgroundColor: "#8b8b8b",
-  color: "white",
-  border: "none",
-  borderRadius: "4px",
-  cursor: "pointer",
-  fontWeight: "bold",
-  fontSize: "14px",
-};
-
-const deleteButtonStyle = {
-  padding: "8px 16px",
-  backgroundColor: "#3f3f45",
-  color: "white",
-  border: "none",
-  borderRadius: "4px",
-  cursor: "pointer",
-  fontWeight: "bold",
-  fontSize: "14px",
+  padding: " 12px", // Increase padding for better spacing
+  borderBottom: "1px solid #e0e0e0", // Add a bottom border for separation
 };
 
 const modalOverlayStyle = {
@@ -321,17 +306,6 @@ const modalButtonStyle = {
   cursor: "pointer",
   fontWeight: "bold",
   fontSize: "14px",
-};
-
-const addButtonStyle = {
-  marginBottom: "20px",
-  padding: "10px 20px",
-  backgroundColor: "blue",
-  color: "#fff",
-  border: "none",
-  borderRadius: "5px",
-  cursor: "pointer",
-  fontSize: "16px",
 };
 
 export default ClientManagement;

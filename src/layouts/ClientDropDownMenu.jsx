@@ -1,9 +1,9 @@
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel,  DropdownMenuSeparator, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from "../components/ui/dropdown-menu.jsx";
 import { Button } from "../components/ui/button.jsx";
 import {CreditCard, LifeBuoy, LogOut, Settings, User } from 'lucide-react';
-import UserApi from "../services/Api/ClientApi.js";
+import UserApi from "../services/Api/UserApi.js";
 import { WELCOMEPAGE_ROUTE } from "../router/index.jsx";
-import { useUserContext } from "../context/StudentContext.jsx";
+import { useUserContext } from "../context/ClientContext.jsx";
 import { useNavigate } from "react-router-dom";
 import { PROFILE_ROUTE } from "../router/index.jsx";
 

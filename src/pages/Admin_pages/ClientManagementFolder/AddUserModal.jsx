@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import axiosClient from "../../api/axios";
+import axiosClient from "../../../api/axios";
 import { Margin } from "@mui/icons-material";
+import { Button } from "@/components/ui/button";
+
 
 const AddUserModal = ({ isOpen, onClose }) => {
   const [newUserData, setNewUserData] = useState({
@@ -84,8 +86,8 @@ const AddUserModal = ({ isOpen, onClose }) => {
               />
             </label>
             <div style={modalButtonContainerStyle}>
-              <button style={addButtonStyle} type="submit">Add User</button>
-              <button style={cancelButtonStyle} onClick={handleCancel}>Cancel</button>
+              <Button  type="submit">Add User</Button>
+              <Button  onClick={handleCancel}>Cancel</Button>
             </div>
           </form>
         </div>
@@ -116,28 +118,8 @@ const modalButtonContainerStyle = {
   
 };
 
-const addButtonStyle = {
-  padding: '8px 16px',
-  backgroundColor: '#8b8b8b',
-  color: 'white',
-  border: 'none',
-  borderRadius: '4px',
-  cursor: 'pointer',
-  fontWeight: 'bold',
-  fontSize: '14px',
-};
 
-const cancelButtonStyle = {
-    
-  padding: '8px 16px',
-  backgroundColor: '#3f3f45',
-  color: 'white',
-  border: 'none',
-  borderRadius: '4px',
-  cursor: 'pointer',
-  fontWeight: 'bold',
-  fontSize: '14px',
-};
+
 
 const modalOverlayStyle = {
   position: 'fixed',

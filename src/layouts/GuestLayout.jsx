@@ -24,7 +24,7 @@ export default function GuestLayout() {
   return (
     <>
       <header>
-        <div className="items-center justify-between flex bg-gray-800 bg-opacity-90 px-12 py-4 mb-4 mx-auto shadow-2xl">
+        <div className="items-center justify-between flex bg-gray-900 bg-opacity-100 px-12 py-4 mb-4 mx-auto shadow-2xl">
           <div className="text-2xl text-white font-semibold inline-flex items-center">
             <Logo /> 
             <div className=" px-2 " >File-Extractor</div>

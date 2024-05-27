@@ -4,18 +4,19 @@ import { HomeIcon } from "lucide-react";
 import { SideBar } from "./SideBar.jsx";
 import ClientDropDownMenu from "./ClientDropDownMenu.jsx"; // Import your StudentDropDownMenu component
 import Footer from "./Footer.jsx";
-import { WELCOMEPAGE_ROUTE, LOGIN_ROUTE } from "../router/index.jsx";
+import ChatbotComponent from "../components/Chatbot.jsx";
+
 
 export default function Layout() {
-  const navigate = useNavigate();
+
 
   return (
     <>
       <header>
-        <div className="items-center justify-between flex bg-gray-800 bg-opacity-90 px-12 py-4 mb-4 mx-auto shadow-2xl">
+        <div className="items-center justify-between flex bg-gray-900 bg-opacity-100 px-12 py-2 mb-4 mx-auto shadow-2xl">
           <div className="text-2xl text-white font-semibold inline-flex items-center">
             <Logo /> 
-            <div className=" px-2 " >File-Extractor</div>
+            <div className=" px-2 " >Documents-IA-Scanner</div>
           </div>
           <div>
             <ul className="flex text-white">
@@ -37,7 +38,8 @@ export default function Layout() {
           <Outlet />
         </div>
       </main>
-      <Footer />
+      <ChatbotComponent />
+      <Footer  />
     </>
   );
 }

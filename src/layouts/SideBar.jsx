@@ -17,8 +17,8 @@ export function SideBar({ className }) {
 
   return (
     <div className={cn("pb-12", className)}>
-      <div className="flex flex-col h-full w-64 bg-gray-200">
-        <div className="px-3 py-2">
+      <div className="flex flex-col  h-full w-64 bg-gray-200">
+        <div className="px-3 py-3">
           <h2 className="mb-2 px-4 text-lg font-semibold tracking-tight">
             Menu 
           </h2>

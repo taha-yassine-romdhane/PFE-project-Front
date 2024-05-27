@@ -1,6 +1,7 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter } from 'react-router-dom';
+import App from '../App';
 import Login from "../pages/Login.jsx";
-import AdminLogin from "../components/Login/AdminLogin.jsx";
+import AdminLogin from "../components/AdminLogin/AdminLogin.jsx";
 import Signup from "../pages/Signup.jsx";
 import NotFound from "../pages/NotFound.jsx";
 import Layout from "../layouts/Layout.jsx";
@@ -8,19 +9,19 @@ import GuestLayout from "../layouts/GuestLayout.jsx";
 import AdminLayout from "../layouts/AdminLayout.jsx";
 import ClientDashboard from "../components/Admin/ClientDashboard.jsx";
 import AdminDashboard from "../components/Admin/AdminDashboard.jsx"
-import FileManagement from "../pages/FileManagement.jsx";
+import FileManagement from "../pages/Client_document/FileManagement.jsx";
 import WelcomePage from "../pages/WelcomePage.jsx";
-import Billing from "../pages/Billing.jsx";
-import Notifications from "../pages/Notifications.jsx";
-import Analytics from "../pages/Analytics.jsx";
-import Settings from "../pages/SettingsPage.jsx";
-import AdminSettings from "../pages/AdminSettingsPage.jsx";  
-import ProfilePage from "../pages/ProfilePage.jsx";
-import ModuleIAManagement from "../pages/ModuleIAManagement.jsx";
-import AdminProfilePage from "../pages/AdminProfilePage.jsx";
-import ClientManagement from "../pages/ClientManagementFolder/ClientManagement.jsx";
+import Billing from "../pages/Client_document/Billing.jsx";
+import Notifications from "../pages/Client_document/Notifications.jsx";
+import Analytics from "../pages/Admin_pages/Analytics.jsx";
+import Settings from "../pages/Client_document/SettingsPage.jsx";
+import AdminSettings from "../pages/Admin_pages/AdminSettingsPage.jsx";  
+import ProfilePage from "../pages/Client_document/ProfilePage.jsx";
+import ModuleIAManagement from "../pages/Client_document/ModuleIAManagement.jsx";
+import AdminProfilePage from "../pages/Admin_pages/AdminProfilePage.jsx";
+import ClientManagement from "../pages/Admin_pages/ClientManagementFolder/ClientManagement.jsx";
 import DocumentsPage from "../pages/Client_document/homePageClient/DocumentsPage.jsx";
-import Archives from "../pages/Archives.jsx";
+import Archives from "../pages/Client_document/Archives.jsx";
 import Module_Folders from "../pages/Admin_pages/Module_Folders.jsx";
 import FolderManagementPage from "../pages/Client_document/FolderManagementClient/FolderManagement.jsx";
 export const CLIENTS_MANAGEMNET_ROUTE = '/Admin/ClientManagement';
@@ -161,4 +162,4 @@ const router = createBrowserRouter([
    
    
 ])
-export default router; 
+export default router;

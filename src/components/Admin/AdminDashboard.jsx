@@ -1,12 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle } from "@/components/ui/sheet"
 
 const AdminDashboard = () => {
   return (
     <div style={{ padding: '20px', maxWidth: '800px', margin: 'auto' }}>
-      <h1 style={{ textAlign: 'center', marginBottom: '20px' }}>Admin Dashboard</h1>
+     
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '20px' }}>
-        <Widget title="Module IA Management" description="Manage Module IA settings and configurations." link = '/ModuleIAManagement'/>
+        <Widget title="Module Folders" description="Manage Module IA settings and configurations." link="/Module_Folders" />
         <Widget title="Client Management" description="Manage clients, view details, and perform actions." link="/Admin/ClientManagement" />
         <Widget title="Admin Notifications" description="View and manage admin notifications and alerts." link="/AdminNotifications" />
         <Widget title="Analytics" description="Access analytics and generate reports." link="/Analytics" />
@@ -17,11 +18,24 @@ const AdminDashboard = () => {
 
 const Widget = ({ title, description, link }) => {
   return (
-    <div style={widgetStyle}>
-      <h3 style={widgetHeaderStyle}>{title}</h3>
-      <p style={widgetTextStyle}>{description}</p>
-      <Link to={link} style={widgetLinkStyle}>Go to {title}</Link>
-    </div>
+    <Sheet>
+      <SheetTrigger>
+        <div style={widgetStyle}>
+          <h3 style={widgetHeaderStyle}>{title}</h3>
+          <p style={widgetTextStyle}>{description}</p>
+          <span  className="p-2 bg-gray-700 text-white rounded shadow-md mr-2 hover:bg-gray-600  focus:ring-opacity-50">{title}</span>
+        </div>
+      </SheetTrigger>
+      <SheetContent>
+        <SheetHeader>
+          <SheetTitle>{title}</SheetTitle>
+        </SheetHeader>
+        <div style={{ padding: '20px' }}>
+          <p>{description}</p>
+          <Link to={link} style={{ ...widgetLinkStyle, ...{ marginTop: '20px' } }}>Go to {title}</Link>
+        </div>
+      </SheetContent>
+    </Sheet>
   );
 };
 
@@ -50,7 +64,7 @@ const widgetLinkStyle = {
   textAlign: 'center',
   textDecoration: 'none',
   borderRadius: '4px',
+  cursor: 'pointer',
 };
 
 export default AdminDashboard;
-

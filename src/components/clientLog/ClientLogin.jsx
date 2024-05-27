@@ -8,8 +8,8 @@ import { Input } from "@/components/ui/input";
 import axiosClient from "../../api/axios";
 import { useNavigate } from "react-router-dom";
 import { HOME_ROUTE } from "../../router";
-
-import { FadeLoader  } from "react-spinners";
+import { Oval } from "react-loader-spinner";
+import { useUserContext } from "../../context/ClientContext";
 
 const formSchema = z.object({
   email: z.string().email().min(2).max(50),
@@ -24,40 +24,33 @@ export default function ClientLogin() {
       password: "12341234",
     }
   });
-  const { handleSubmit, control } = formMethods;
+  const { handleSubmit, control, formState: { isSubmitting } } = formMethods;
   const navigate = useNavigate();
-  const form = useForm({
-    resolver: zodResolver(formSchema),
-  })
-  const {setError, formState: {isSubmitting}} = form
+  const { setUser, setAuthenticated } = useUserContext();
+
   const [loading, setLoading] = useState(true);
- 
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Fetch CSRF token
         await axiosClient.get('/sanctum/csrf-cookie');
-        // Set loading to false once token is fetched
         setLoading(false);
       } catch (error) {
         console.error('Error fetching CSRF token:', error);
-        // Set loading to false in case of error too
         setLoading(false);
       }
     };
-    // Call fetchData when component mounts
     fetchData();
   }, []);
 
   const onSubmit = async (values) => {
     try {
       const { data } = await axiosClient.post('/api/login', values);
-      // Save credentials securely
       localStorage.setItem('token', data.token);
-      // Set the Authorization header for Axios
       axiosClient.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
-      // Navigate to the desired page
-      navigate(HOME_ROUTE); // Make sure /dashboard route is correct
+      setUser(data.user);
+      setAuthenticated(true);
+      navigate(HOME_ROUTE);
     } catch (error) {
       console.error('Login failed:', error);
     }
@@ -67,14 +60,14 @@ export default function ClientLogin() {
     <Form {...formMethods}>
       {loading ? (
         <div className="flex items-center justify-center h-screen">
-          <FadeLoader  color="gray"  size={150} />
+          <Oval height={80} width={80} color="gray" ariaLabel="loading" />
         </div>
       ) : (
         <div className="flex justify-center mt-10">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-8 max-w-md w-full">
             <FormField
               control={control}
-              name="email" 
+              name="email"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Email</FormLabel>
@@ -87,7 +80,7 @@ export default function ClientLogin() {
             />
             <FormField
               control={control}
-              name="password" 
+              name="password"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Password</FormLabel>
@@ -98,8 +91,10 @@ export default function ClientLogin() {
                 </FormItem>
               )}
             />
-            <Button className={''} disabled={isSubmitting} type="submit">
-              {isSubmitting ? <FadeLoader  color="white"  size={10} /> : 'Login'} 
+            <Button disabled={isSubmitting} type="submit">
+              {isSubmitting ? (
+                <Oval height={20} width={20} color="white" ariaLabel="loading" />
+              ) : 'Login'}
             </Button>
           </form>
         </div>

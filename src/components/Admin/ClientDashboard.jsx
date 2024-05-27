@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import DataTable from "../DataTable";
 import Client_Folders from "../../pages/Client_document/homePageClient/Client_Folders";
-import FileManagement from "../../pages/FileManagement";
+import FileManagement from "../../pages/Client_document/FileManagement";
 const ClientDashboard = () => {
   const [selectedFile, setSelectedFile] = useState(null);
 
@@ -30,15 +29,7 @@ const ClientDashboard = () => {
 
           {/* Forms Section */}
           <div className="mt-8">
-            <h2 className="text-xl font-semibold mb-4">Questions response example </h2>
-            <div className="bg-white p-8 shadow rounded-lg">
-              {/* Example form */}
-              <form>
-                <div>
-                  <DataTable />
-                </div>
-              </form>
-            </div>
+         
           </div>
         </div>
       </main>

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Bell, X } from 'react-feather';
+import axios from 'axios';
 
 const Notifications = () => {
   const [notifications, setNotifications] = useState([
@@ -7,6 +8,18 @@ const Notifications = () => {
     { id: 2, message: 'Reminder: Meeting at 2 PM', date: '2024-03-20T14:00:00' },
     { id: 3, message: 'You have 3 new emails', date: '2024-03-19T08:45:00' },
   ]);
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    // Fetch all images
+    axios.get('http://localhost:8000/api/images')
+      .then(response => {
+        setImages(response.data);
+      })
+      .catch(error => {
+        console.error('There was an error fetching the images!', error);
+      });
+  }, []);
 
   // Function to remove a notification
   const removeNotification = (id) => {
@@ -39,6 +52,18 @@ const Notifications = () => {
       {notifications.length === 0 && (
         <p className="text-gray-600 mt-4">No new notifications.</p>
       )}
+
+      {/* Display images */}
+      <div className="mt-8">
+        <h2 className="text-2xl font-bold mb-4 text-gray-800">Images</h2>
+        <div className="grid grid-cols-3 gap-4">
+          {images.map(image => (
+            <div key={image.id} className="bg-white p-4 shadow-md rounded-lg">
+              <img src={`http://localhost:8000/${image.path}`} alt={`Page ${image.page_number}`} className="w-full h-auto object-cover" />
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
